@@ -1,0 +1,19 @@
+/* Coolidge's desk notes and independent archival audio stations. */
+.desk-notes{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:22px 0}
+.desk-notes button{display:flex;align-items:center;gap:12px;text-align:left;background:#e8ddc7;border:1px solid #b69a68;padding:14px;color:#254338!important;min-height:78px}
+.desk-notes button:hover{background:#dfcfad}
+.desk-notes button>b{font:27px Georgia;color:#856633}
+.desk-notes button>span{flex:1;font-size:12px}
+.desk-notes small{display:block;font-size:11px;letter-spacing:1px;margin-top:7px}
+.desk-notes em{font-style:normal;color:#856633}
+.desk-slip-copy{margin:20px 0;padding:20px 23px;background:#e5d6b6;border-left:3px solid #a18048;font:16px/1.8 Georgia,serif}
+.slip-answer-row{display:flex;gap:12px;margin:10px 0 14px;align-items:stretch}
+.slip-answer-row input{min-width:0;width:52%;border:1px solid #ab8b55;background:#fff9ec;color:#254338;font:21px Georgia,serif;text-transform:uppercase;letter-spacing:2px;padding:12px}
+.slip-answer-row input:disabled{opacity:1;background:#dde3d5}
+.slip-answer-row .primary{width:auto;flex:1;justify-content:center}
+.slip-history{font-size:12px;line-height:1.9;border-bottom:1px solid #c8b58e;padding:12px 0;margin:12px 0 20px}
+.slip-history summary{cursor:pointer;font-weight:600}
+.slip-history .bibliography{padding-left:20px}
+.audio-source-button{text-decoration:none;justify-content:center;margin:20px 0}
+.desk-notes button:focus-visible,.slip-answer-row input:focus-visible{outline:3px solid #466454;outline-offset:3px}
+@media(max-width:550px){.desk-notes{grid-template-columns:1fr}.desk-notes button{min-height:64px}.slip-answer-row{flex-wrap:wrap}.slip-answer-row input{width:100%}.slip-answer-row .primary{flex-basis:100%}.desk-slip-copy{padding:16px;font-size:15px}}

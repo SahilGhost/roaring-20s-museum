@@ -14,7 +14,7 @@ let clock=0,updated=0;
 const session=new MuseumSession(()=>clock);session.start('escape');
 const ui=createExhibitUI({session,rooms:[],currentRoom:()=>null,beforeOpen(){},onProgress(){updated++;},toast(){},sound(){}});
 ui.finishAtReference();assert.equal(node('exhibitDialog').open,false,'No result before five galleries are solved');
-for(const room of ['industry','study']){
+for(const room of ['industry']){
  for(const e of EXHIBITS.filter(e=>e.room===room))ui.progress.inspect(e.id);
  for(const question of PUZZLES[room].steps){
   const before=ui.progress.incorrectMcq;
@@ -24,7 +24,7 @@ for(const room of ['industry','study']){
   assert.equal(ui.progress.answer(room,question.answer),true);
  }
 }
-assert.equal(ui.progress.incorrectMcq,6,'Only valid wrong MCQ submissions count');
+assert.equal(ui.progress.incorrectMcq,3,'Only valid wrong MCQ submissions count');
 for(const room of GALLERY_ORDER)session.completeGallery(room);
 clock=65000;assert.equal(session.finishedAt,null,'Last gallery does not stop the clock');
 ui.progress.hints={industry:2,teapot:1};
@@ -33,7 +33,7 @@ assert.equal(session.finishedAt,65000);assert.equal(updated,1);
 assert.equal(node('exhibitDialog').open,true);
 assert.match(node('exhibitBody').innerHTML,/Congratulations, historian/);
 assert.match(node('exhibitBody').innerHTML,/01:05/);
-assert.match(node('exhibitBody').innerHTML,/<b>6<\/b> Incorrect MCQ answers/);
+assert.match(node('exhibitBody').innerHTML,/<b>3<\/b> Incorrect MCQ answers/);
 assert.match(node('exhibitBody').innerHTML,/<b>3<\/b> Hints used/);
 clock+=5000;ui.finishAtReference();assert.equal(session.elapsedMs,65000);assert.equal(updated,1,'Completion is idempotent');
 ui.reset();assert.equal(ui.progress.incorrectMcq,0);

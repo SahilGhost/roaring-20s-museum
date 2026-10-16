@@ -21,7 +21,9 @@ Use WASD to walk, Shift to move faster, drag to look, and click or press E to in
 
 The five galleries cover German reparations and U.S. finance; government relations with business and labor; Harding and Coolidge economic policy; Harding-era corruption and Teapot Dome; and Coolidge's public style and communication.
 
-The Reference Room contains the bibliography and separate A1 and D1 essential-question libraries. Twenty-two artifacts include historical background, significance, source metadata, and read-aloud. Original Harding and Coolidge audiovisual sources are linked separately from browser speech synthesis.
+The Reference Room contains the bibliography and separate A1 and D1 essential-question libraries. Twenty-two artifacts include historical background, significance, source metadata, and read-aloud. Original Harding and Coolidge audiovisual sources are linked separately from browser speech synthesis. Wall speaker symbols in Galleries 3 and 5 open these archival sources directly. Gallery 5 retains its four exhibits and adds six numbered desk slips and a six-letter drawer lock.
+
+Four selected history panels also include locally bundled Library of Congress photographs, dated captions, and links to the original catalog records. Photo credits are recorded in dist/assets/history/CREDITS.md.
 
 ## Source layout
 
@@ -31,6 +33,7 @@ The Reference Room contains the bibliography and separate A1 and D1 essential-qu
 - dist/exhibit-content.js: artifact labels, source bibliography and puzzles
 - dist/exhibit-history.js: expanded historical background and significance
 - dist/exhibit-ui.js: artifact panels, challenges, hint tracking and results
+- dist/study-puzzle.js: six Coolidge desk slips and drawer challenge
 - dist/eq-answers.js: student-authored A1 and D1 interpretations
 - tests/: navigation, progression, geometry, scoring and result checks
 - design/: classroom production guide
@@ -41,5 +44,6 @@ The Reference Room contains the bibliography and separate A1 and D1 essential-qu
     node tests/session.mjs
     node tests/collection.mjs
     node tests/results.mjs
+    node tests/study.mjs
 
 The project has no npm installation or build step. Three.js is bundled under its MIT license; the license notice is in dist/vendor/LICENSE-three.txt. Historical source material remains attributed in the in-game bibliography.

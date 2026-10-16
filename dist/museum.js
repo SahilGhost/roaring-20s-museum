@@ -36,13 +36,13 @@ function sign(text,small,w,h,x,y,z,rotation=0,parent=scene){
   const panel=new THREE.Mesh(new THREE.PlaneGeometry(w,h),new THREE.MeshBasicMaterial({map:texture}));panel.position.set(x,y,z);panel.rotation.y=rotation;parent.add(panel);return panel;
 }
 function reparationsDecor(){
-  for(const [z,title,caption,kind] of [[-2.15,'THE WESTERN FRONT','WWI BATTLE MAP · MUSEUM SCHEMATIC','map'],[4.15,'WALL STREET','NEW YORK FINANCIAL MARKETS · MUSEUM ILLUSTRATION','exchange']]){
-    const t=canvasTexture(900,650,(c,w,h)=>{c.fillStyle='#e6d5ad';c.fillRect(0,0,w,h);c.strokeStyle='#8c7044';c.lineWidth=18;c.strokeRect(24,24,w-48,h-48);c.fillStyle='#28483d';c.textAlign='center';c.font='42px Georgia';c.fillText(title,w/2,90);c.font='19px Arial';c.fillText(caption,w/2,h-60);
-      if(kind==='map'){c.strokeStyle='#9a684c';c.lineWidth=13;c.beginPath();c.moveTo(210,150);c.bezierCurveTo(420,190,290,310,520,340);c.bezierCurveTo(650,400,490,480,700,510);c.stroke();c.fillStyle='#3b6957';c.font='22px Arial';c.fillText('FRONT LINE · 1918',390,575);for(const [x,y] of [[210,150],[520,340],[700,510]]){c.beginPath();c.arc(x,y,11,0,7);c.fill();}}
-      else{c.fillStyle='#385e50';for(let i=0;i<8;i++){const x=160+i*90,ht=110+(i%3)*48;c.fillRect(x,470-ht,58,ht);c.strokeStyle='#aa8a51';c.strokeRect(x,470-ht,58,ht);}c.strokeStyle='#9d6044';c.lineWidth=9;c.beginPath();c.moveTo(145,400);c.lineTo(290,342);c.lineTo(415,360);c.lineTo(560,260);c.lineTo(740,230);c.stroke();c.fillStyle='#254438';c.font='21px Arial';c.fillText('CREDIT AND STOCKS · 1920s',450,545);}
-    });
-    const panel=new THREE.Mesh(new THREE.PlaneGeometry(2.5,1.8),new THREE.MeshBasicMaterial({map:t,side:THREE.DoubleSide}));panel.position.set(-16.07,2.6,1+z);panel.rotation.y=Math.PI/2;scene.add(panel);
-  }
+  // The old Western Front map overlapped the gallery title. Keep that area clear.
+  const t=canvasTexture(900,650,(c,w,h)=>{
+    c.fillStyle='#e6d5ad';c.fillRect(0,0,w,h);c.strokeStyle='#8c7044';c.lineWidth=18;c.strokeRect(24,24,w-48,h-48);c.fillStyle='#28483d';c.textAlign='center';c.font='42px Georgia';c.fillText('WALL STREET',w/2,90);c.font='19px Arial';c.fillText('NEW YORK FINANCIAL MARKETS · MUSEUM ILLUSTRATION',w/2,h-60);
+    c.fillStyle='#385e50';for(let i=0;i<8;i++){const x=160+i*90,ht=110+(i%3)*48;c.fillRect(x,470-ht,58,ht);c.strokeStyle='#aa8a51';c.strokeRect(x,470-ht,58,ht);}c.strokeStyle='#9d6044';c.lineWidth=9;c.beginPath();c.moveTo(145,400);c.lineTo(290,342);c.lineTo(415,360);c.lineTo(560,260);c.lineTo(740,230);c.stroke();c.fillStyle='#254438';c.font='21px Arial';c.fillText('CREDIT AND STOCKS · 1920s',450,545);
+  });
+  const panel=new THREE.Mesh(new THREE.PlaneGeometry(2.1,1.5),new THREE.MeshBasicMaterial({map:t,side:THREE.DoubleSide}));
+  panel.position.set(-16.07,2.6,4.55);panel.rotation.y=Math.PI/2;scene.add(panel);
 }
 function floor(w,d,x,z,room=false){
   const texture=canvasTexture(512,512,(ctx,W,H)=>{ctx.fillStyle=room?'#b4a185':'#d9d3c2';ctx.fillRect(0,0,W,H);const sz=128;for(let i=0;i<4;i++)for(let j=0;j<4;j++){ctx.fillStyle=(i+j)%2===0?(room?'#bba88b':'#e3dece'):(room?'#b19d80':'#c8c4b4');ctx.fillRect(i*sz+2,j*sz+2,sz-3,sz-3);ctx.strokeStyle=room?'#a18a6b55':'#ffffff40';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(i*sz+8,j*sz+28);ctx.bezierCurveTo(i*sz+40,j*sz+90,i*sz+75,j*sz+28,i*sz+120,j*sz+102);ctx.stroke();}});
@@ -165,7 +165,7 @@ function updateModeHud(){
   $('modeLabel').textContent=competitive?'GALLERIES UNLOCKED':'FREE EXPLORATION';$('progressText').textContent=competitive?`${session.unlockedCount} / 5`:'All galleries accessible';
   $('modeButtonLabel').textContent=competitive?'Escape room':'Free exploration';$('elapsedTime').textContent=formatElapsed(session.elapsedMs);
 }
-function chooseMode(mode){selectedMode=mode;document.querySelectorAll('[data-mode]').forEach(b=>{const selected=b.dataset.mode===mode;b.classList.toggle('selected',selected);b.setAttribute('aria-pressed',String(selected));});$('modeDescription').textContent=mode==='escape'?'Begin in Gallery 1. Find the right reparations stamp, combine the economic policy files, and solve the Teapot Dome evidence box. No floor plan; the clock runs in menus.':'All six rooms are open to explore. No timer, no locked galleries.';$('enterBtn').innerHTML=(mode==='escape'?'Start escape room':'Enter free exploration')+' <span>→</span>';$('previewNote').textContent=started?'Starting either mode begins a new visit and resets your timer and progress.':'22 interactive artifacts · 3 locks · 2 evidence challenges · Two EQ libraries';}
+function chooseMode(mode){selectedMode=mode;document.querySelectorAll('[data-mode]').forEach(b=>{const selected=b.dataset.mode===mode;b.classList.toggle('selected',selected);b.setAttribute('aria-pressed',String(selected));});$('modeDescription').textContent=mode==='escape'?'Begin in Gallery 1. Find the right reparations stamp, combine the economic policy files, and solve the Teapot Dome evidence box. No floor plan; the clock runs in menus.':'All six rooms are open to explore. No timer, no locked galleries.';$('enterBtn').innerHTML=(mode==='escape'?'Start escape room':'Enter free exploration')+' <span>→</span>';$('previewNote').textContent=started?'Starting either mode begins a new visit and resets your timer and progress.':'22 exhibits · 6 desk slips · 4 locks · 1 evidence challenge · Two EQ libraries';}
 function setWelcomeOpen(open){choosingMode=open;$('welcome').classList.toggle('hidden',!open);for(const selector of ['.hud','.location','.bottom','#modeBtn','#touchControls','#collectionBtn'])document.querySelector(selector).inert=open;if(!open)$('world').focus();}
 function startMode(){
   session.start(selectedMode);exhibitUI?.reset();started=true;keys.clear();visited.clear();drag=null;activeDoor=null;activeCollection=null;
@@ -193,7 +193,7 @@ function animate(time){
     camera.position.y=1.7;if((f||s)&&elapsed-lastFootstep>.44){playTone('step');lastFootstep=elapsed;}
     camera.rotation.set(pitch,yaw,0,'YXZ');camera.updateMatrixWorld();
     activeCollection=targetCollection();activeDoor=activeCollection?null:targetDoor()||nearbyDoor();$('doorPrompt').hidden=!activeDoor&&!activeCollection;$('crosshair').classList.toggle('active',!!activeDoor||!!activeCollection);
-    if(activeCollection){$('doorPrompt').classList.remove('locked');$('doorPrompt').querySelector('span').textContent=activeCollection.type==='exhibit'?'Inspect artifact':activeCollection.type==='puzzle'?'Examine evidence desk':'Read references';}
+    if(activeCollection){$('doorPrompt').classList.remove('locked');$('doorPrompt').querySelector('span').textContent=activeCollection.type==='exhibit'?'Inspect artifact':activeCollection.type==='slip'?'Read desk slip':activeCollection.type==='audio'?'Open archival audio':activeCollection.type==='puzzle'?(activeCollection.room==='study'?'Examine desk drawer':'Examine evidence desk'):'Read references';}
     if(activeDoor){const locked=!session.canEnter(activeDoor.room.id);$('doorPrompt').classList.toggle('locked',locked);$('doorPrompt').querySelector('span').textContent=(locked?'Locked':activeDoor.open?'Close':'Open')+' · '+activeDoor.room.short;}
     updateLocation();
   }else{$('doorPrompt').hidden=true;}

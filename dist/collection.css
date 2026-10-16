@@ -6,3 +6,15 @@
 .lock-row{display:flex;gap:12px;margin:12px 0 20px}.lock-row input{width:130px;min-height:46px;background:#fffaf0;border:2px solid #9f854e;color:#284538;font:26px Georgia;text-align:center;letter-spacing:8px}.lock-row .primary{flex:1}.lock-row input:focus-visible{outline:3px solid #588a73;outline-offset:2px}#exhibitDialog label[for="lockInput"]{font-size:12px;font-weight:700;letter-spacing:1px;color:#365648}
 .archive-audio{padding:14px 18px;background:#e5e9dc;border-left:3px solid #557661}.archive-audio a{color:#204f40;font-weight:700;text-decoration:underline;text-underline-offset:3px}.archive-audio small{display:block;margin-top:6px;color:#5f7167;font-size:11px;line-height:1.5}
 .case-annotation{padding:8px 20px 16px;background:#e7ddc5;border:1px solid #b9a57c;margin:20px 0}.case-annotation h3{font:700 11px Arial!important;letter-spacing:1.4px;text-transform:uppercase;color:#755d35}.case-annotation p{font:15px/1.8 Georgia;color:#354b40}.result-stats{gap:18px}.result-stats span{flex:1}
+
+/* A small selection of original archival photographs within the history panels. */
+.historical-photo{margin:22px 0;background:#e9e1cf;border:1px solid #c6b58f}
+.historical-photo-full{display:block;background:#172d26;line-height:0}
+.historical-photo img{display:block;width:100%;height:auto;max-height:390px;object-fit:contain}
+.historical-photo figcaption{padding:14px 16px;color:#314b40}
+.historical-photo figcaption strong{display:block;font:600 12px/1.6 Arial,sans-serif}
+.historical-photo figcaption span{display:block;font:13px/1.8 Georgia,serif;margin:7px 0}
+.historical-photo figcaption small{display:block;font:10px/1.8 Arial,sans-serif;color:#647263}
+.historical-photo figcaption a{color:#275743;text-underline-offset:3px}
+.historical-photo-full:focus-visible{outline:3px solid #587862;outline-offset:3px}
+@media(max-width:550px){.historical-photo figcaption{padding:12px}.historical-photo img{max-height:300px}}

@@ -1,7 +1,10 @@
+import { STUDY_DRAWER } from './study-puzzle.js';
 // Historical content and answer keys. Reconstructions are explicitly identified.
 // This educational game is client-side: competitive mode is a timed challenge,
 // not a tamper-proof online competition. Sources accessed 14 October 2026.
 export const SOURCES = [
+{"id":"coolidge-editors","title":"Address to the American Society of Newspaper Editors","author":"Calvin Coolidge; The American Presidency Project, UCSB","date":"17 January 1925","url":"https://www.presidency.ucsb.edu/documents/address-the-american-society-newspaper-editors-washington-dc","type":"Primary: presidential address"},
+{"id":"coolidge-oath","title":"Statement on the Death of Warren G. Harding","author":"Calvin Coolidge; Calvin Coolidge Presidential Foundation","date":"3 August 1923","url":"https://coolidgefoundation.org/resources/statement-on-the-death-of-warren-g-harding/","type":"Primary: presidential statement"},
   { id: 'versailles', title: 'The Paris Peace Conference and the Treaty of Versailles', author: 'Office of the Historian, U.S. Department of State', date: '1919', url: 'https://history.state.gov/milestones/1914-1920/paris-peace', type: 'Secondary: diplomatic history' },
   { id: 'fourteen', title: 'President Woodrow Wilson’s Fourteen Points', author: 'Woodrow Wilson; National Archives', date: '8 January 1918', url: 'https://www.archives.gov/milestone-documents/president-woodrow-wilsons-14-points', type: 'Primary: presidential address' },
   { id: 'hague', title: 'Agreement on Reparations Signed at The Hague', author: 'Governments party to the agreement; U.S. Office of the Historian', date: '20 January 1930', url: 'https://history.state.gov/historicaldocuments/frus1919Parisv13/ch36', type: 'Primary: agreement text' },
@@ -277,7 +280,8 @@ export const EXHIBITS = [
     "description": "Coolidge’s December 1924 message to Congress presented prosperity, economy, and tax reduction as major presidential priorities. It also addressed the practical work of governing.",
     "clue": "Compare the president’s claims about national prosperity with the experiences recorded elsewhere in the museum.",
     "sources": [
-      "coolidge-message"
+      "coolidge-message",
+      "coolidge-editors"
     ]
   },
   {
@@ -290,7 +294,8 @@ export const EXHIBITS = [
     "clue": "What qualities did this public image communicate, and how might different audiences have interpreted them?",
     "sources": [
       "coolidge-policy",
-      "coolidge-message"
+      "coolidge-message",
+      "coolidge-oath"
     ]
   },
   {
@@ -440,84 +445,5 @@ export const PUZZLES = {
       "Follow the clues’ stated order rather than arranging the file labels alphabetically."
     ]
   },
-  "study": {
-    "title": "Write the final interpretation",
-    "prompt": "Interpret the evidence from all five galleries. Complete this challenge to unlock the bibliography room, then open its door to finish your escape.",
-    "steps": [
-      {
-        "question": "How should a historian evaluate Coolidge’s calm, pro-business message?",
-        "options": [
-          {
-            "id": "a",
-            "text": "Accept a president’s optimism as proof that everyone prospered."
-          },
-          {
-            "id": "b",
-            "text": "Discard every political speech as useless."
-          },
-          {
-            "id": "c",
-            "text": "Use it to identify his priorities, then compare it with farm and other evidence."
-          }
-        ],
-        "answer": "c",
-        "explanation": "The primary message is valuable evidence of perspective. Different experiences help test the breadth of its claims.",
-        "sourceIds": [
-          "coolidge-message",
-          "coolidge-policy"
-        ]
-      },
-      {
-        "question": "What does the radio exhibit add to our understanding of “Silent Cal”?",
-        "options": [
-          {
-            "id": "a",
-            "text": "A restrained public image could coexist with modern methods of reaching large audiences."
-          },
-          {
-            "id": "b",
-            "text": "Coolidge never addressed an audience."
-          },
-          {
-            "id": "c",
-            "text": "Radio removed differences between urban and rural economies."
-          }
-        ],
-        "answer": "a",
-        "explanation": "The sound film and radio appearances complicate the nickname. A communication technology does not by itself erase economic differences.",
-        "sourceIds": [
-          "coolidge-film"
-        ]
-      },
-      {
-        "question": "D1 — What can interpretations of the 1920s teach us about cause, change, and current policy?",
-        "options": [
-          {
-            "id": "a",
-            "text": "The boom proves that all tax cuts always benefit everyone equally."
-          },
-          {
-            "id": "b",
-            "text": "Compare growth with uneven benefits, corruption with oversight, and the Dawes Plan’s recovery with dependence on U.S. loans. Such evidence helps citizens weigh regulation, labor protections, and international risk today."
-          },
-          {
-            "id": "c",
-            "text": "One scandal caused every economic problem of the decade."
-          }
-        ],
-        "answer": "b",
-        "explanation": "The 1920s show that policies can spur growth while creating uneven outcomes; oversight matters when officials abuse authority, and international credit can stabilize economies while creating vulnerabilities. Read both complete EQ answers in the Reference Room.",
-        "sourceIds": [
-          "teapot-history",
-          "coolidge-message",
-          "state-dawes"
-        ]
-      }
-    ],
-    "hints": [
-      "Consider what a presidential statement can establish and what requires other evidence.",
-      "Compare a public reputation with documented actions.",
-      "Weigh intended benefits, differing experiences, and longer-term consequences together."
-    ]
-  }
+  "study": { ...STUDY_DRAWER, kind: "slips" }
 };
